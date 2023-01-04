@@ -13,7 +13,8 @@ import type { GitHubRepos, Project, ProjectPost } from '~/types';
  * @TODO Switch to v3 API using GraphQL to save over-fetching
  */
 export async function fetchProjects(): Promise<Array<Project> | null> {
-	const response = await fetch('https://api.github.com/users/nurodev/repos', {
+	// const response = await fetch('https://api.github.com/users/nurodev/repos', {
+	const response = await fetch('https://api.github.com/users/x1aotian/repos', {
 		headers: {
 			...(process.env.GITHUB_PAT && {
 				authorization: `token ${process.env.GITHUB_PAT}`,
@@ -35,13 +36,16 @@ export async function fetchProjects(): Promise<Array<Project> | null> {
 	}
 
 	const json = (await response.json()) as GitHubRepos;
+	json.sort((a, b) => {
+		return +new Date(b.updated_at) - +new Date(a.updated_at);
+	})
 
 	const { default: rawProjectPosts } = await import('~/data/projects.json');
 	const projectPosts = rawProjectPosts as Array<ProjectPost>;
 
 	const projects: Array<Project> = json
 		.map((repo) => {
-			if (!repo.topics.includes('portfolio')) return null;
+			if (!repo.topics.includes('project')) return null;
 
 			if (repo.archived) return null;
 

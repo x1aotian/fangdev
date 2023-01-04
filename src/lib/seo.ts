@@ -8,8 +8,8 @@ export function useSeoProps(
 ): Partial<ComponentProps<typeof NextSeo>> {
 	const router = useRouter();
 
-	const title = 'nuro ─ developer';
-	const description = "Hey 👋 I'm Ben, a developer";
+	const title = 'Xiaotian Fang';
+	const description = "Hey 👋 I'm Fang, a developer";
 
 	return {
 		title,
@@ -23,7 +23,7 @@ export function useSeoProps(
 			type: 'website',
 			images: [
 				{
-					url: 'https://nuro.dev/banner.png',
+					url: 'https://ibb.co/KK87FtJ',
 					alt: description,
 					width: 1280,
 					height: 720,

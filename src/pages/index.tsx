@@ -1,5 +1,4 @@
 import dynamic from 'next/dynamic';
-import { differenceInYears } from 'date-fns';
 import { Icon } from '@iconify/react';
 
 import { Animate, Button, Pill } from '~/components';
@@ -19,12 +18,6 @@ const Event = dynamic<EventProps>(
 const ACTIONS: Array<NavigationItem> = [
 	{
 		type: NavigationItemType.LINK,
-		href: '/blog',
-		icon: <Icon className="mr-3" icon="feather:edit-3" />,
-		text: 'Blog',
-	},
-	{
-		type: NavigationItemType.LINK,
 		href: '/projects',
 		icon: <Icon className="mr-3" icon="feather:copy" />,
 		text: 'Projects',
@@ -36,16 +29,29 @@ const ACTIONS: Array<NavigationItem> = [
 		icon: <Icon className="mr-3" icon="feather:github" />,
 		text: 'GitHub',
 	},
+	{
+		type: NavigationItemType.LINK,
+		external: true,
+		href: 'https://www.linkedin.com/in/xiaotian-fang/',
+		icon: <Icon className="mr-3" icon="feather:linkedin" />,
+		text: 'LinkedIn',
+	},
+	{
+		type: NavigationItemType.LINK,
+		external: true,
+		href: 'https://www.dropbox.com/s/u2u3kq0y3n9ndwu/Resume_Xiaotian_Fang.pdf?dl=0',
+		icon: <Icon className="mr-3" icon="feather:file-text" />,
+		text: 'Resume',
+	},
 ];
 
 export default function HomePage(): JSX.Element {
 	const today = new Date();
-	const birthday = new Date('1997-08-09');
-	const age = differenceInYears(today, birthday);
+	const birthday = new Date('1998-12-24');
 	const isBirthday =
 		today.getDate() === birthday.getDate() && today.getMonth() === birthday.getMonth();
 
-	const description = `I am a ${age} year old software engineer & games developer`;
+	const description = `My name is Xiaotian Fang, I am a software development engineer.`;
 
 	return (
 		<Layout.Default>
@@ -60,7 +66,7 @@ export default function HomePage(): JSX.Element {
 						}}
 						className="text-gray-500 dark:text-white text-5xl sm:text-6xl md:text-6xl lg:text-8xl tracking-tight font-extrabold">
 						Hey <span className="inline-block origin-70 hover:(animate-wave)">👋</span>{' '}
-						I&apos;m Ben, <br className="hidden sm:block" />a{' '}
+						I&apos;m Fang, <br className="hidden sm:block" />a{' '}
 						<Pill.Standard className="mt-4">developer</Pill.Standard>
 					</Animate>
 
